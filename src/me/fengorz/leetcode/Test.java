@@ -1,6 +1,7 @@
 package me.fengorz.leetcode;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.IntConsumer;
 
 /**
  * @Description TODO
@@ -13,7 +14,7 @@ public class Test {
         // FooBarTest();
         // zeroEvenOddTest();
         // h2o();
-
+        fizzBuzzTest();
     }
 
     private static void FooBarTest() {
@@ -113,6 +114,63 @@ public class Test {
 
         t2.start();
         t1.start();
+    }
+
+    public static void fizzBuzzTest() throws InterruptedException {
+        int n = 15;
+        FizzBuzz fizzBuzz = new FizzBuzz(n);
+        Runnable fizzPrint = () -> {
+            System.out.print("fizz ");
+        };
+        Runnable buzzPrint = () -> {
+            System.out.print("buzz ");
+        };
+        Runnable fizzBuzzPrint = () -> {
+            System.out.print("fizzbuzz ");
+        };
+        IntConsumer printNumber = value -> {
+            System.out.print(value + " ");
+        };
+
+        Thread t1 = new Thread(() -> {
+            try {
+                for (int i = 0; i < n; i++) {
+                    fizzBuzz.fizz(fizzPrint);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        Thread t2 = new Thread(() -> {
+            try {
+                for (int i = 0; i < n; i++) {
+                    fizzBuzz.buzz(buzzPrint);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        Thread t3 = new Thread(() -> {
+            try {
+                for (int i = 0; i < n; i++) {
+                    fizzBuzz.fizzbuzz(fizzBuzzPrint);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        Thread t4 = new Thread(() -> {
+            try {
+                fizzBuzz.number(printNumber);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
     }
 
 }

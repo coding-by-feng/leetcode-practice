@@ -81,7 +81,7 @@ public class DiningPhilosophers {
                            Runnable putLeftFork,
                            Runnable putRightFork) throws InterruptedException {
         this.mutex.acquire();
-        synchronized (barrier) {
+        synchronized (barrier){
             this.forkArr[philosopher].acquire();
             this.forkArr[this.getFork(philosopher)].acquire();
         }
