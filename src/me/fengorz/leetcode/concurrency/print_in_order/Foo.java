@@ -1,4 +1,4 @@
-package me.fengorz.leetcode.print_in_order;
+package me.fengorz.leetcode.concurrency.print_in_order;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

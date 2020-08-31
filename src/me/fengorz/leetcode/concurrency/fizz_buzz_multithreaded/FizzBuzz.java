@@ -1,4 +1,4 @@
-package me.fengorz.leetcode.fizz_buzz_multithreaded;//编写一个可以从 1 到 n 输出代表这个数字的字符串的程序，但是：
+package me.fengorz.leetcode.concurrency.fizz_buzz_multithreaded;//编写一个可以从 1 到 n 输出代表这个数字的字符串的程序，但是：
 //
 // 
 // 如果这个数字可以被 3 整除，输出 "fizz"。 

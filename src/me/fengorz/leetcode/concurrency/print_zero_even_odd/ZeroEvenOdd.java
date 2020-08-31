@@ -1,4 +1,4 @@
-package me.fengorz.leetcode.print_zero_even_odd;
+package me.fengorz.leetcode.concurrency.print_zero_even_odd;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Condition;

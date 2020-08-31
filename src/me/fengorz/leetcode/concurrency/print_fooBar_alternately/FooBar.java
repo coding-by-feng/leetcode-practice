@@ -1,4 +1,4 @@
-package me.fengorz.leetcode.print_fooBar_alternately;//我们提供一个类：
+package me.fengorz.leetcode.concurrency.print_fooBar_alternately;//我们提供一个类：
 //
 // 
 //class FooBar {

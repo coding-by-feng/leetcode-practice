@@ -1,9 +1,9 @@
-package me.fengorz.leetcode;
+package me.fengorz.leetcode.concurrency;
 
-import me.fengorz.leetcode.building_H2O.H2O;
-import me.fengorz.leetcode.fizz_buzz_multithreaded.FizzBuzz;
-import me.fengorz.leetcode.print_fooBar_alternately.FooBar;
-import me.fengorz.leetcode.print_zero_even_odd.ZeroEvenOdd;
+import me.fengorz.leetcode.concurrency.building_H2O.H2O;
+import me.fengorz.leetcode.concurrency.fizz_buzz_multithreaded.FizzBuzz;
+import me.fengorz.leetcode.concurrency.print_fooBar_alternately.FooBar;
+import me.fengorz.leetcode.concurrency.print_zero_even_odd.ZeroEvenOdd;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.IntConsumer;

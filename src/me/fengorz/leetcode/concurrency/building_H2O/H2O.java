@@ -1,4 +1,4 @@
-package me.fengorz.leetcode.building_H2O;//现在有两种线程，氧 oxygen 和氢 hydrogen，你的目标是组织这两种线程来产生水分子。
+package me.fengorz.leetcode.concurrency.building_H2O;//现在有两种线程，氧 oxygen 和氢 hydrogen，你的目标是组织这两种线程来产生水分子。
 //
 // 存在一个屏障（barrier）使得每个线程必须等候直到一个完整水分子能够被产生出来。 
 //
