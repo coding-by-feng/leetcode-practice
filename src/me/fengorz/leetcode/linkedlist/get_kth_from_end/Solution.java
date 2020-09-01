@@ -1,18 +1,16 @@
-package me.fengorz.leetcode.linkedlist.kth_to_last;
-//实现一种算法，找出单向链表中倒数第 k 个节点。返回该节点的值。
+package me.fengorz.leetcode.linkedlist.get_kth_from_end;
+//输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。例如，一个链表有6个节点，从头节点开始，
+//它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点。 
 //
-// 注意：本题相对原题稍作改动 
+// 
 //
 // 示例： 
 //
-// 输入： 1->2->3->4->5 和 k = 2
-//输出： 4 
+// 给定一个链表: 1->2->3->4->5, 和 k = 2.
 //
-// 说明： 
-//
-// 给定的 k 保证是有效的。 
+//返回链表 4->5. 
 // Related Topics 链表 双指针 
-// 👍 40 👎 0
+// 👍 79 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -27,16 +25,16 @@ package me.fengorz.leetcode.linkedlist.kth_to_last;
  */
 public class Solution {
     // 使用双指针解决问题，就不用统计链表的长度。
-    public int kthToLast(ListNode head, int k) {
+    public ListNode getKthFromEnd(ListNode head, int k) {
         ListNode tmp = head;
         for (int i = 0; i < k; i++) {
-            tmp = tmp.next;
-        }
-        while (tmp != null) {
-            tmp = tmp.next;
             head = head.next;
         }
-        return head.val;
+        while (head != null) {
+            head = head.next;
+            tmp = tmp.next;
+        }
+        return tmp;
     }
 
     private static class ListNode {
