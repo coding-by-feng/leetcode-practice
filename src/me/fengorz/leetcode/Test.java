@@ -1,4 +1,4 @@
-package me.fengorz.leetcode.concurrency;
+package me.fengorz.leetcode;
 
 import me.fengorz.leetcode.concurrency.building_H2O.H2O;
 import me.fengorz.leetcode.concurrency.fizz_buzz_multithreaded.FizzBuzz;
@@ -19,7 +19,10 @@ public class Test {
         // FooBarTest();
         // zeroEvenOddTest();
         // h2o();
-        fizzBuzzTest();
+        // fizzBuzzTest();
+        // List<Object> syncArrayList = Collections.synchronizedList(new ArrayList<>());
+        // List<Object> syncLinkedList = Collections.synchronizedList(new LinkedList<>());
+        // System.out.println(44 >> 1);
     }
 
     private static void FooBarTest() {
