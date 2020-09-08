@@ -74,6 +74,8 @@ public class Solution {
     // S "y#fo##f"
     // T "fy#f#o#"
     // T "ffy#f#o##"
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Backspace String Compare.
+    // Memory Usage: 37.5 MB, less than 91.28% of Java online submissions for Backspace String Compare.
     public boolean backspaceCompare_twoPointer(String S, String T) {
         // s指向S的当前有效字母，t同（从右往左）
         int s = S.length() - 1, t = T.length() - 1;
@@ -84,7 +86,7 @@ public class Solution {
         while (s > -1 || t > -1) {
             // 拿到单个有效字母s
             while (s > -1) {
-                // 验证阶段，发现当前p等于#
+                // 验证阶段，发现当前s等于#
                 if (flag == S.charAt(s)) {
                     // 需要当前调整1步
                     sStep++;
