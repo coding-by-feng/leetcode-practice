@@ -42,6 +42,8 @@ public class RecentCounter {
 
     public RecentCounter() {
         // 使用链表实现的队列比ArrayDeque顺序表方式空间复杂度更低
+        // 在[1, 3000]的区间，max值可以有3000个元素
+        // 当达到过max值时，如果使用ArrayDeque，在之后的某次新的t值冲刷掉老的3000个t值，这个时候将造成数组的2999个空元素位置的浪费
         this.queue = new LinkedList<>();
     }
 
