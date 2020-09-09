@@ -16,8 +16,8 @@ package me.fengorz.leetcode.queue.moving_average;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
+import java.util.Queue;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 public class MovingAverage {
@@ -25,7 +25,7 @@ public class MovingAverage {
     private int size, tmpSum = 0;
     private boolean isDeuqeOverflow = false;
     private List<Integer> list = new ArrayList<>();
-    private Deque<Integer> deque = new ArrayDeque<>();
+    private Queue<Integer> queue = new ArrayDeque<>();
 
     /**
      * Initialize your data structure here.
@@ -51,21 +51,21 @@ public class MovingAverage {
     }
 
     /**
-     * 双端队列解法，这个解法时间复杂度和空间复杂度更低
+     * 队列解法，这个解法时间复杂度和空间复杂度更低
      * 执行用时：25 ms, 在所有 Java 提交中击败了96.59%的用户
      * 内存消耗：42.8 MB, 在所有 Java 提交中击败了98.09%的用户
      *
      * @param val
      * @return
      */
-    public double next_deque(int val) {
-        this.deque.add(val);
+    public double next_queue(int val) {
+        this.queue.add(val);
         this.tmpSum += val;
-        if (this.deque.size() > this.size) {
+        if (this.queue.size() > this.size) {
             this.isDeuqeOverflow = true;
-            this.tmpSum -= this.deque.pop();
+            this.tmpSum -= this.queue.poll();
         }
-        return this.isDeuqeOverflow ? tmpSum * 1D / this.size : tmpSum * 1D / this.deque.size();
+        return this.isDeuqeOverflow ? tmpSum * 1D / this.size : tmpSum * 1D / this.queue.size();
     }
 }
 
