@@ -49,10 +49,10 @@ class Solution {
         if (n < 2) {
             return n;
         }
-        return fib(n - 2) + fib(n - 1) % 1000000007;
+        return (fib(n - 2) + fib(n - 1)) % 1000000007;
     }
 
-    private HashMap<Integer, Integer> fMap;
+    private final HashMap<Integer, Integer> fMap;
 
     public Solution() {
         this.fMap = new HashMap<>();
@@ -60,7 +60,7 @@ class Solution {
 
     /**
      * 使用额外的HashMap解法
-     * 减少重复计算的开销，如果是重量级的计算的话效果呈现出来。
+     * 减少重复计算的开销，如果是重量级的计算的话效果会呈现出来。
      * @param n
      * @return
      */
