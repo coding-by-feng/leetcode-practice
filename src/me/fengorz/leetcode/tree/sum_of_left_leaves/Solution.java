@@ -1,4 +1,5 @@
-package me.fengorz.leetcode.tree.sum_of_left_leaves;//计算给定二叉树的所有左叶子之和。
+package me.fengorz.leetcode.tree.sum_of_left_leaves;
+//计算给定二叉树的所有左叶子之和。
 //
 // 示例： 
 //
@@ -52,12 +53,8 @@ public class Solution {
             }
             return;
         }
-        if (node.left != null) {
-            next(node.left, true);
-        }
-        if (node.right != null) {
-            next(node.right, false);
-        }
+        next(node.left, true);
+        next(node.right, false);
     }
 
     public class TreeNode {
