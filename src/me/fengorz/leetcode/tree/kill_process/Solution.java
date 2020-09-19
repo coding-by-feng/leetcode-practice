@@ -50,6 +50,8 @@ public class Solution {
     /**
      * 深度优先搜索（DFS）
      *
+     * 不过单纯DFS容易超出限制。
+     *
      * @param pid
      * @param ppid
      * @param kill
@@ -72,5 +74,8 @@ public class Solution {
 
         return result;
     }
+
+    // TODO ZSF 模拟树解法
+    // TODO ZSF 宽度优先搜索解法
 }
 //leetcode submit region end(Prohibit modification and deletion)
