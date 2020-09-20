@@ -1,4 +1,5 @@
-package me.fengorz.leetcode.string.repeated_substring_pattern;//给定一个非空的字符串，判断它是否可以由它的一个子串重复多次构成。给定的字符串只含有小写英文字母，并且长度不超过10000。
+package me.fengorz.leetcode.string.repeated_substring_pattern;
+//给定一个非空的字符串，判断它是否可以由它的一个子串重复多次构成。给定的字符串只含有小写英文字母，并且长度不超过10000。
 //
 // 示例 1: 
 //
@@ -39,7 +40,7 @@ public class Solution {
      * ----- bdubdubdu（符合题目要求）
      * ---------- 那么将字符串double，然后计算double后的串所匹配到的第二个double前的串，
      * ---------- 会发现所匹配到的下标必定是小于double前串的总长度的，这是因为串的可重复性导致的。
-     * ----- bdubdubdu（不符合题目要求）
+     * ----- dbubdubbu（不符合题目要求）
      * ---------- 同上，这种不可由重复得到的串double之后，计算double后的串所匹配到的第二个double前的串
      * ---------- 会发现所匹配到的下标必定是从double前串的总长度开始的，这是因为串的不可重复性导致的。
      *
