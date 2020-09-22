@@ -34,6 +34,9 @@ package me.fengorz.leetcode.string.repeated_substring_pattern;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 public class Solution {
+
+    private int[] next;
+
     /**
      * 利用原生API的巧妙解法
      * 假定两个字符串：
@@ -51,7 +54,57 @@ public class Solution {
         return (s + s).indexOf(s, 1) != s.length();
     }
 
-    // TODO ZSF KMP算法解法
+    /**
+     * KMP解法，同样是基于上面的理解基础，只不过不用原生API实现
+     * <p>
+     * 内存消耗：38.7 MB, 在所有 Java 提交中击败了99.95%的用户
+     *
+     * @return
+     */
+    public boolean repeatedSubstringPattern_kmp(String s) {
+        return kmp(s + s, s);
+    }
+
+    private boolean kmp(String main, String pattern) {
+        // 先构建模式串的next数组，下标从0开始
+        initNext(pattern);
+        // i为主串指针，j为模式串指针，n为匹配第几次
+        int i = 1, j = 0;
+        while (i < main.length() && j < pattern.length()) {
+            if (j == -1 || main.charAt(i) == pattern.charAt(j)) {
+                ++i;
+                ++j;
+            } else {
+                j = next[j];
+            }
+        }
+
+        if (j >= pattern.length()) {
+            return i - pattern.length() != pattern.length();
+        } else {
+            return false;
+        }
+    }
+
+    private void initNext(String pattern) {
+        // 冗余出最后一个元素位，防止下标溢出
+        next = new int[pattern.length() + 1];
+        int i = 1, j = -1;
+        next[0] = j;
+        while (i < pattern.length()) {
+            if (j == -1 || pattern.charAt(i) == pattern.charAt(j)) {
+                ++i;
+                ++j;
+                next[i] = j;
+            } else {
+                j = next[j];
+            }
+        }
+    }
     // TODO ZSF 优化版KMP算法解法
+
+    public static void main(String[] args) {
+        System.out.println(new Solution().repeatedSubstringPattern_kmp("abab"));
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
