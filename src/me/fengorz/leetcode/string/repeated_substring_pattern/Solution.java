@@ -55,7 +55,7 @@ public class Solution {
     }
 
     /**
-     * KMP解法，同样是基于上面的理解基础，只不过不用原生API实现
+     * KMP解法，同样是基于上面解法的基础，只不过不用原生API实现
      * <p>
      * 内存消耗：38.7 MB, 在所有 Java 提交中击败了99.95%的用户
      *
@@ -68,7 +68,7 @@ public class Solution {
     private boolean kmp(String main, String pattern) {
         // 先构建模式串的next数组，下标从0开始
         initNext(pattern);
-        // i为主串指针，j为模式串指针，n为匹配第几次
+        // i为主串指针，j为模式串指针
         int i = 1, j = 0;
         while (i < main.length() && j < pattern.length()) {
             if (j == -1 || main.charAt(i) == pattern.charAt(j)) {
