@@ -100,9 +100,9 @@ public class Solution {
             }
         }
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < sArr.length; i++) {
-            if (EMPTY != sArr[i]) {
-                result.append(sArr[i]);
+        for (char c : sArr) {
+            if (EMPTY != c) {
+                result.append(c);
             }
         }
 
