@@ -59,15 +59,15 @@ import java.util.LinkedList;
 //leetcode submit region begin(Prohibit modification and deletion)
 public class Solution {
 
-    final char LEFT = '(';
-    final char RIGHT = ')';
-    final char EMPTY = ' ';
+    private static final char LEFT = '(';
+    private static final char RIGHT = ')';
+    private static final char EMPTY = ' ';
 
     /**
      * 使用双端队列代替栈，中间用负值作为屏障标志
      * 队尾插入需要被抵消的左括号
-     * 对头插入没办法被抵消的右括号
-     *
+     * 队头插入没办法被抵消的右括号
+     * <p>
      * 执行用时：15 ms, 在所有 Java 提交中击败了94.78%的用户
      *
      * @param s
