@@ -92,8 +92,8 @@ public class PrioritizedEdenAllocation {
         byte[] allocation4 = new byte[4 * _1MB]; // Eden空间不足，第一次GC，allocation1、allocation2直接进入Major，而非Survivor
         System.out.println("------------");
         allocation4 = null;
-        allocation4 = new byte[4 * _1MB];
-        System.out.println("------------");// 手动第二次GC，allocation3也进入Major，所以tenured generation占用48%
+        allocation4 = new byte[4 * _1MB]; // 手动第二次GC，allocation3也进入Major，所以tenured generation占用48%
+        System.out.println("------------");
         // tenured generation   total 10240K, used 4967K [0x00000007bf600000, 0x00000007c0000000, 0x00000007c0000000)
         // the space 10240K,  48% used [0x00000007bf600000, 0x00000007bfad9f80, 0x00000007bfada000, 0x00000007c0000000)
     }
