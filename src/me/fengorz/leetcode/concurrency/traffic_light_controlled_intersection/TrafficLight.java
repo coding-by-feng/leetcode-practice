@@ -92,7 +92,6 @@ public class TrafficLight {
     private boolean road2Green;
 
 
-
     public TrafficLight() {
         // 注意要FIFO
         this.greenMutex = new Semaphore(1, true);
@@ -127,15 +126,14 @@ public class TrafficLight {
                 road1Green = true;
                 road2Green = false;
             }
-            crossCar.run();
         } else {
             if (!road2Green) {
                 turnGreen.run();
                 road2Green = true;
                 road1Green = false;
             }
-            crossCar.run();
         }
+        crossCar.run();
         greenMutex.release();
     }
 }
