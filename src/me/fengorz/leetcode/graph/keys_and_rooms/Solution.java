@@ -52,6 +52,9 @@ public class Solution {
 
     /**
      * 深度优先搜索解法（DFS）
+     *
+     * 执行用时：0 ms, 在所有 Java 提交中击败了100.00%的用户
+     *
      * @param rooms
      * @return
      */
