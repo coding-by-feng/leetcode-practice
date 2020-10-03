@@ -39,7 +39,6 @@ import java.util.Arrays;
 public class Solution {
 
     private static int heatersHigh;
-    private static int housesHigh;
     private int high;
     private int low;
 
@@ -55,7 +54,7 @@ public class Solution {
         Arrays.sort(heaters);
         Arrays.sort(houses);
         heatersHigh = heaters.length - 1;
-        housesHigh = houses.length - 1;
+        int housesHigh = houses.length - 1;
 
         int max = 0;
         int i = 0;
