@@ -59,10 +59,10 @@ public class Solution {
         int max = 0;
         int i = 0;
         for (int house : houses) {
-            ++i;
             if (house > heaters[heatersHigh]) {
                 break;
             }
+            ++i;
             if (bs(heaters, house)) {// 屋子与供暖器相等时跳过
                 continue;
             }
