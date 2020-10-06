@@ -66,7 +66,7 @@ public class Solution {
      * -------- 如果此时的M不可满足题目，那么将low设定为M，high设定为M*D，进行折半查找（high的Max值不会超过weights的总值）；
      * -------- 然后重复折半查找。
      * <p>
-     * 实际上将high直接置为Integer.MAX_VALUE会更快，当weights的长度超过远远超过30个左右时会更加明显。
+     * 实际上将low置为0，high直接置为Integer.MAX_VALUE会更快，当weights的长度远远超过30个左右时会更加明显。
      *
      * @param weights
      * @param D
@@ -113,7 +113,7 @@ public class Solution {
                 d--;
             }
         }
-        // 最后一个获取上船如果也超重了，天数也要减一
+        // 最后一个货物上船如果也超重了，天数也要减一
         return d > 0;
     }
 
