@@ -87,7 +87,7 @@ public class Solution {
      * DFS解法
      * ---- 如果踩雷，M变为X，return
      * ---- 如果安全，搜寻其周围的雷数
-     * -------- 如果周围有雷，E变为雷数，比继续DFS其周围的方块（避免踩雷）
+     * -------- 如果周围有雷，E变为雷数，return（避免踩雷）
      * -------- 如果周围没雷，继续DFS（访问过的方块pass），注意要向八个方向递归，刚开始只递归四个方向一直出错。
      *
      * @param board
@@ -102,11 +102,11 @@ public class Solution {
         boardYPreBorder = board[0].length - 1;
         boardXPreBorder = board.length - 1;
         visitRecord = new int[board.length][board[0].length];
-        dfs(board, click[0], click[1], B);
+        dfs(board, click[0], click[1]);
         return board;
     }
 
-    private void dfs(char[][] board, int x, int y, char pre) {
+    private void dfs(char[][] board, int x, int y) {
         if (x < 0 || x >= board.length || y < 0 || y >= board[0].length) {
             return;
         }
@@ -116,18 +116,18 @@ public class Solution {
         visitRecord[x][y] = 1;
         char result = board[x][y] = recur(board, x, y);
         // 挖到数字不挖旁边的方块
-        if (result != B) {
+        if (result != B && result != M) {
             return;
         }
         // 往四周八个方向扩展
-        dfs(board, x - 1, y, result);
-        dfs(board, x - 1, y - 1, result);
-        dfs(board, x - 1, y + 1, result);
-        dfs(board, x + 1, y, result);
-        dfs(board, x + 1, y + 1, result);
-        dfs(board, x + 1, y - 1, result);
-        dfs(board, x, y - 1, result);
-        dfs(board, x, y + 1, result);
+        dfs(board, x - 1, y);
+        dfs(board, x - 1, y - 1);
+        dfs(board, x - 1, y + 1);
+        dfs(board, x + 1, y);
+        dfs(board, x + 1, y + 1);
+        dfs(board, x + 1, y - 1);
+        dfs(board, x, y - 1);
+        dfs(board, x, y + 1);
     }
 
     private char recur(char[][] board, int x, int y) {
