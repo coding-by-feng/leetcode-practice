@@ -182,7 +182,7 @@ public class Solution {
         // 其四周拥有炸弹的数字
         int i = 0;
         for (char c : all) {
-            if (c == M || c == X) {
+            if (c == M) {
                 ++i;
             }
         }
