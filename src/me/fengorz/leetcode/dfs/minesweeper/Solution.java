@@ -1,4 +1,4 @@
-package me.fengorz.leetcode.bfs.minesweeper;
+package me.fengorz.leetcode.dfs.minesweeper;
 //让我们一起来玩扫雷游戏！
 //
 // 给定一个代表游戏板的二维字符矩阵。 'M' 代表一个未挖出的地雷，'E' 代表一个未挖出的空方块，'B' 代表没有相邻（上，下，左，右，和所有4个对角线）
@@ -77,7 +77,6 @@ package me.fengorz.leetcode.bfs.minesweeper;
 public class Solution {
 
     private final static char B = 'B';
-    private final static char E = 'E';
     private final static char M = 'M';
     private final static char X = 'X';
     private static int boardYPreBorder;
@@ -85,49 +84,57 @@ public class Solution {
     private int[][] visitRecord;
 
     /**
-     * BFS解法
-     * TODO 待修改优化
+     * DFS解法
+     * ---- 如果踩雷，M变为X，return
+     * ---- 如果安全，搜寻其周围的雷数
+     * -------- 如果周围有雷，E变为雷数，比继续DFS其周围的方块（避免踩雷）
+     * -------- 如果周围没雷，继续DFS（访问过的方块pass），注意要向八个方向递归，刚开始只递归四个方向一直出错。
      *
      * @param board
      * @param click
      * @return
      */
     public char[][] updateBoard(char[][] board, int[] click) {
+        if (board[click[0]][click[1]] == M) {
+            board[click[0]][click[1]] = X;
+            return board;
+        }
         boardYPreBorder = board[0].length - 1;
         boardXPreBorder = board.length - 1;
         visitRecord = new int[board.length][board[0].length];
-        if (board[click[0]][click[1]] == M) {
-            board[click[0]][click[1]] = X;
-        }
-        bfs(board, click[0], click[1]);
+        dfs(board, click[0], click[1], B);
         return board;
     }
 
-    private void bfs(char[][] board, int x, int y) {
+    private void dfs(char[][] board, int x, int y, char pre) {
         if (x < 0 || x >= board.length || y < 0 || y >= board[0].length) {
-            // -128~127之间读取缓存，速度很快
             return;
         }
         if (visitRecord[x][y] == 1) {
             return;
         }
         visitRecord[x][y] = 1;
-        change(board, x, y);
-        bfs(board, x - 1, y);
-        bfs(board, x + 1, y);
-        bfs(board, x, y - 1);
-        bfs(board, x, y + 1);
+        char result = board[x][y] = recur(board, x, y);
+        // 挖到数字不挖旁边的方块
+        if (result != B) {
+            return;
+        }
+        // 往四周八个方向扩展
+        dfs(board, x - 1, y, result);
+        dfs(board, x - 1, y - 1, result);
+        dfs(board, x - 1, y + 1, result);
+        dfs(board, x + 1, y, result);
+        dfs(board, x + 1, y + 1, result);
+        dfs(board, x + 1, y - 1, result);
+        dfs(board, x, y - 1, result);
+        dfs(board, x, y + 1, result);
     }
 
-    /**
-     * ---- 上，下，左，右，和所有4个对角线都没有地雷的话，返回B
-     *
-     * @param board
-     * @param x
-     * @param y
-     * @return
-     */
-    private char change(char[][] board, int x, int y) {
+    private char recur(char[][] board, int x, int y) {
+        if (board[x][y] == M) {
+            return M;
+        }
+
         char up = 0;
         char down = 0;
         char left = 0;
@@ -137,38 +144,38 @@ public class Solution {
         char downLeft = 0;
         char downRight = 0;
         // 当前位置不处于最上边
-        if (x > 0) {
+        boolean isNotUp = x > 0;
+        // 当前位置不处于最左边
+        boolean isNotLeft = y > 0;
+        // 当前位置不处于最右边
+        boolean isNotRight = y < boardYPreBorder;
+        // 当前位置不处于最下边
+        boolean isNotDown = x < boardXPreBorder;
+        if (isNotUp) {
             up = board[x - 1][y];
-            // 当前位置不处于最左边
-            if (y > 0) {
+            if (isNotLeft) {
                 upLeft = board[x - 1][y - 1];
             }
-            // 当前位置不处于最右边
-            if (y < boardYPreBorder) {
+            if (isNotRight) {
                 upRight = board[x - 1][y + 1];
             }
         }
-        // 当前位置不处于最下边
-        if (x < boardXPreBorder) {
+        if (isNotDown) {
             down = board[x + 1][y];
-            if (y > 0) {
+            if (isNotLeft) {
                 downLeft = board[x + 1][y - 1];
             }
-            if (y < boardYPreBorder) {
+            if (isNotRight) {
                 downRight = board[x + 1][y + 1];
             }
         }
-        // 当前位置不处于最左边
-        if (y > 0) {
+        if (isNotLeft) {
             left = board[x][y - 1];
         }
-        // 当前位置不处于最右边
-        if (y < boardYPreBorder) {
+        if (isNotRight) {
             right = board[x][y + 1];
         }
-
-        board[x][y] = seek(up, down, left, right, upLeft, upRight, downLeft, downRight);
-        return board[x][y];
+        return seek(up, down, left, right, upLeft, upRight, downLeft, downRight);
     }
 
     private char seek(char... all) {
@@ -181,5 +188,6 @@ public class Solution {
         }
         return i > 0 ? Character.forDigit(i, 10) : B;
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
