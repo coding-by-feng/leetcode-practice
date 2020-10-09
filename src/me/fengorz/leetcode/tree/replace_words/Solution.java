@@ -67,7 +67,7 @@ import java.util.stream.Collectors;
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-    private final static String EMPTY = " ";
+    private final static String SPACING = " ";
 
     private static int compare(String pre, String next) {
         return pre.length() > next.length() ? 0 : -1;
@@ -86,16 +86,16 @@ class Solution {
         // 先对dictionary从短到长进行排序
         List<String> sortedDict = dictionary.stream().sorted(Solution::compare).distinct().collect(Collectors.toList());
         StringBuilder result = new StringBuilder();
-        for (String word : sentence.split(EMPTY)) {
+        for (String word : sentence.split(SPACING)) {
             int old = result.length();
             for (String pre : sortedDict) {
                 if (word.startsWith(pre)) {
-                    result.append(pre).append(EMPTY);
+                    result.append(pre).append(SPACING);
                     break;
                 }
             }
             if (result.length() == old) {
-                result.append(word).append(EMPTY);
+                result.append(word).append(SPACING);
             }
         }
         result.replace(result.length() - 1, result.length(), "");
