@@ -73,12 +73,12 @@ class Solution {
                 digitLogs.add(log);
             }
         }
-        alphabetLogs.sort((preLog, nextLog) -> {
-            Integer preIndex = map.get(preLog);
+        alphabetLogs.sort((prevLog, nextLog) -> {
+            Integer prevIndex = map.get(prevLog);
             Integer nextIndex = map.get(nextLog);
-            int cmp = preLog.substring(preIndex).compareTo(nextLog.substring(nextIndex));
+            int cmp = prevLog.substring(prevIndex).compareTo(nextLog.substring(nextIndex));
             if (cmp == 0) {
-                return preLog.substring(0, preIndex - 1).compareTo(nextLog.substring(0, nextIndex - 1));
+                return prevLog.substring(0, prevIndex - 1).compareTo(nextLog.substring(0, nextIndex - 1));
             }
             return cmp;
         });
