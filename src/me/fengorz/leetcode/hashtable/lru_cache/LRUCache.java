@@ -113,18 +113,6 @@ class LRUCache {
     }
 
     /**
-     * 在头部插入，只有头节点为空才能调用
-     *
-     * @param node
-     */
-    private void addFirst(Node node) {
-        this.head.next = node;
-        node.prev = this.head;
-        node.next = this.tail;
-        this.tail.prev = node;
-    }
-
-    /**
      * 在尾部插入
      *
      * @param node
