@@ -44,6 +44,8 @@ class LRUCacheInProto {
     private final int capacity;
 
     /**
+     * Amazon Problems.
+     * <p>
      * 使用原生API实现，性能较差
      *
      * @param capacity

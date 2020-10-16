@@ -38,7 +38,7 @@ import java.util.Map;
 class LRUCache {
 
     /**
-     * 使用头尾节点，头节点用来代表最久未被使用的数据，尾节点用来代表最近被使用的数据，组成一个双向链表
+     * 使用头尾节点，头节点空节点组成一个双向链表，空节点可以忽略临界问题，其真实的头节点代表即将被删除的最久未使用的数据
      */
     private Node head, tail;
     private Map<Integer, Node> bucket;
@@ -46,6 +46,8 @@ class LRUCache {
     private int size;
 
     /**
+     * Amazon Problems.
+     * <p>
      * 执行用时：19 ms, 在所有 Java 提交中击败了82.04%的用户
      * 内存消耗：46.1 MB, 在所有 Java 提交中击败了99.78%的用户
      *
@@ -124,8 +126,6 @@ class LRUCache {
 
     /**
      * 在尾部插入
-     * --- 如果尾部为空，如果将新节点和first连接
-     * --- 如果尾部不为空，新节点替换为this.tail，并与老的this.tail连接
      *
      * @param node
      */
@@ -150,16 +150,6 @@ class LRUCache {
             this.key = key;
             this.value = value;
         }
-    }
-
-    public static void main(String[] args) {
-        LRUCache cache = new LRUCache(2);
-        cache.put(2, 1);
-        cache.put(1, 1);
-        cache.put(2, 3);
-        cache.put(4, 1);
-        cache.get(1);
-        cache.get(2);
     }
 
 }
