@@ -5,6 +5,7 @@ import me.fengorz.leetcode.concurrency.fizz_buzz_multithreaded.FizzBuzz;
 import me.fengorz.leetcode.concurrency.print_fooBar_alternately.FooBar;
 import me.fengorz.leetcode.concurrency.print_zero_even_odd.ZeroEvenOdd;
 
+import java.util.Stack;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.IntConsumer;
 
@@ -22,7 +23,7 @@ public class Test {
         // fizzBuzzTest();
         // List<Object> syncArrayList = Collections.synchronizedList(new ArrayList<>());
         // List<Object> syncLinkedList = Collections.synchronizedList(new LinkedList<>());
-        // System.out.println(44 >> 1);
+        System.out.println((int) ' ');
     }
 
     private static void FooBarTest() {
@@ -179,6 +180,72 @@ public class Test {
         t2.start();
         t3.start();
         t4.start();
+    }
+
+    private class Graph {
+        int val;
+        int index;
+        Graph[] neighbors;
+        int currentVisitNeighborIndex = 0;
+
+        public Graph firstNeighbor() {
+            if (neighbors == null || neighbors.length == 0) {
+                return null;
+            }
+            return neighbors[currentVisitNeighborIndex++];
+        }
+
+        public Graph nextNeighbor() {
+            if (neighbors != null && currentVisitNeighborIndex < neighbors.length) {
+                return neighbors[currentVisitNeighborIndex++];
+            }
+            return null;
+        }
+    }
+
+    private Graph getGraph(int index) {
+        // dosomething
+        return null;
+    }
+
+    boolean topologicalSort(int[] indegrees) {
+        // 当前顶点
+        Graph g = null;
+        Stack<Integer> stack = new Stack<>();
+        // 找出入度为0的顶点
+        for (int i : indegrees) {
+            if (i == 0) {
+                stack.push(i);
+                // 顶点入队之后，其入度已经不存在，也就是删除顶点与其出边
+                --indegrees[i];
+                g = getGraph(i);
+            }
+        }
+        // 记录当前访问顶点的个数
+        int count = 0;
+        // 用一个数组来记录排序的序列
+        int[] print = new int[indegrees.length];
+        while (!stack.isEmpty()) {
+            // 记录当前的额顶点下标（排序）
+            print[count++] = stack.pop();
+            for (Graph tmp = g.firstNeighbor(); tmp != null; tmp = g.nextNeighbor()) {
+                // 删除入度，如果此时入度为0，代表又是一个顶点
+                if (--indegrees[tmp.index] == 0) {
+                    // 顶点入队
+                    stack.push(tmp.index);
+                    // 删除顶点与其出边
+                    --indegrees[tmp.index];
+                    g = getGraph(tmp.index);
+                }
+            }
+        }
+        if (count < indegrees.length) {
+            // 如果有顶点没有被访问到，不是DAG，剩下的是环状结构
+            return false;
+        } else {
+            // 拓扑排序成功，输出print
+            return true;
+        }
     }
 
 }

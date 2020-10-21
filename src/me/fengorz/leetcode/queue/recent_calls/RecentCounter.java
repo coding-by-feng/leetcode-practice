@@ -51,6 +51,7 @@ public class RecentCounter {
      * 简单的队列解法
      * 执行用时：28 ms, 在所有 Java 提交中击败了90.78%的用户
      * 内存消耗：48 MB, 在所有 Java 提交中击败了95.20%的用户
+     *
      * @param t
      * @return
      */

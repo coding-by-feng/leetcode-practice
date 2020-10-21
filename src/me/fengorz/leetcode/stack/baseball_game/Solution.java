@@ -114,7 +114,7 @@ public class Solution {
     public static void main(String[] args) {
         Solution test = new Solution();
         System.out.println(test.calPoints(
-                new String[]{"5","-2","4","C","D","9","+","+"}));
+                new String[]{"5", "-2", "4", "C", "D", "9", "+", "+"}));
     }
 
 }

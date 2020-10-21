@@ -36,8 +36,8 @@ public class StaticDispath {
     }
 
     /**
-     * Human可理解过man或者woman的静态类型，静态类型在编译器就可知
-     * man和woman还具备了一个实际类型，或者叫运行时类型，这要在运行器才能得知
+     * Human可理解为man或者woman的静态类型，静态类型在编译器就可知
+     * man和woman还具备了一个实际类型，或者叫运行时类型，这要在运行时才能得知
      *
      * @param args
      */
@@ -47,6 +47,10 @@ public class StaticDispath {
         StaticDispath staticDispath = new StaticDispath();
         staticDispath.sayHello(man);
         staticDispath.sayHello(woman);
+        /**
+         * hello, mankind!
+         * hello, mankind!
+         */
 
         // 实际类型变化，要运行时才能得知
         Human mankind = (new Random()).nextBoolean() ? new Man() : new Woman();
@@ -55,9 +59,5 @@ public class StaticDispath {
         staticDispath.sayHello((Woman) mankind);
     }
 
-    /**
-     * hello, mankind!
-     * hello, mankind!
-     */
 
 }

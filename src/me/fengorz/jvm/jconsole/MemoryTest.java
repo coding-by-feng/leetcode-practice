@@ -14,6 +14,7 @@ public class MemoryTest {
      * -Xms100m
      * -Xmx100m
      * -XX:+UseSerialGC
+     *
      * @param num
      * @throws InterruptedException
      */

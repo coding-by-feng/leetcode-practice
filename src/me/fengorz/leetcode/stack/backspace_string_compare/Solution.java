@@ -120,7 +120,7 @@ public class Solution {
             }
             // 如果S是""，T是"abc"之类的，没必要再继续做重复下去了，反之也是
             if (s < 0 && t > -1 || s > -1 && t < 0) {
-            // if ((s > -1) != (t > -1)) {
+                // if ((s > -1) != (t > -1)) {
                 return false;
             }
 
